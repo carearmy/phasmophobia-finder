@@ -117,6 +117,36 @@ const ghosts = {
             evidences.ghost_writing
         ],
         "Lorem ipsum"
+    ),
+
+    spirit: new Ghost(
+        "Spirit",
+        [
+            evidences.fingerprints,
+            evidences.ghost_writing,
+            evidences.spirit_box
+        ],
+        "Lorem ipsum"
+    ),
+
+    wraith: new Ghost(
+        "Wraith",
+        [
+            evidences.fingerprints,
+            evidences.freezing,
+            evidences.spirit_box
+        ],
+        "Lorem ipsum"
+    ),
+
+    yurei: new Ghost(
+        "Yurei",
+        [
+            evidences.freezing,
+            evidences.ghost_orb,
+            evidences.ghost_writing
+        ],
+        "Lorem ipsum"
     )
 };
 
