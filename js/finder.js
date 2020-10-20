@@ -157,13 +157,72 @@ function evidenceLoop(eCurr) {
 
     for (let e = 1; e <= 3 && eCurr.max > eCurr.curr; e++) {
         const key = Object.keys(evidences)[eCurr.curr];
-        console.log(key);
 
-        row.$button(evidences[key].name + " ", {"class": "btn btn-dark mr-2", "id": key, type: "button"})
-            .$span("?", {"class": "badge badge-secondary"});
+        let button = row.$button(evidences[key].name + " ", {"class": "btn btn-dark mr-2", "id": key, type: "button"});
+        button.click(toggleEvidence);
+
+        button.$span("?", {"class": "badge badge-secondary"});
 
         eCurr.curr++;
     }
+}
+
+function ghostInfo() {
+
+
+    // don't let default click handler do anything
+    return false;
+}
+
+function selectGhosts() {
+    Object.keys(ghosts).forEach(function(key) {
+        let ghost = ghosts[key];
+
+        let match = !(Object.values(evidences).some(function (evidence) {
+            if (ghost.evidences.includes(evidence)) {
+                return evidence.state === State.NO;
+            } else {
+                return evidence.state === State.YES;
+            }
+        }));
+
+        $("#" + key).css("opacity", ((match) ? '1.0' : '0.4'));
+
+        console.log(ghost.name + " = " + match);
+    });
+}
+
+function toggleEvidence() {
+    let button = $(this)[0];
+    let evidence = evidences[button.id];
+
+    switch (evidence.state) {
+        case State.UNKNOWN:
+            evidence.state = State.YES;
+
+            $(this).toggleClass("btn-success", true);
+            $(this).toggleClass("btn-dark", false);
+            $(this).toggleClass("btn-danger", false);
+            break;
+
+        case State.YES:
+            evidence.state = State.NO;
+
+            $(this).toggleClass("btn-success", false);
+            $(this).toggleClass("btn-dark", false);
+            $(this).toggleClass("btn-danger", true);
+            break;
+
+        case State.NO:
+            evidence.state = State.UNKNOWN;
+
+            $(this).toggleClass("btn-success", false);
+            $(this).toggleClass("btn-dark", true);
+            $(this).toggleClass("btn-danger", false);
+            break;
+    }
+
+    selectGhosts();
 }
 
 function ghostLoop(gCurr) {
@@ -179,8 +238,10 @@ function ghostLoop(gCurr) {
         let body = row.$div({"class": "card", "id": key})
             .$div({"class": "card-body"});
 
-        body.$h5_(ghost.name, {"class": "card-title"});
-        body.$p_(ghost.desc, {"class": "card-text"});
+        let title = body.$h5(ghost.name, {"class": "card-title"});
+        title.$a("?", {"class": "badge badge-info ml-2", "href": "#"}).click(ghostInfo);
+
+        //body.$p(ghost.desc, {"class": "card-text"});
 
         let evidences = body.$div_({"class": "card-text"});
 
@@ -200,7 +261,6 @@ function addEvidenceButtons() {
     const leftover = amount % 3;
 
     for (let r = 0; r < rows; r++) {
-        console.log(r);
         evidenceLoop(eCurr);
     }
 
