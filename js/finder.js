@@ -229,7 +229,7 @@ function ghostLoop(gCurr) {
     let row = $("#ghosts")
         .$div({"class": "row align-items-center mb-3"})
         .$div({"class": "col text-center"})
-        .$div({"class": "card-deck"})
+        .$div({"class": "card-deck"});
 
     for (let g = 1; g <= 3 && gCurr.max > gCurr.curr; g++) {
         const key = Object.keys(ghosts)[gCurr.curr];
