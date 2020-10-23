@@ -161,8 +161,6 @@ function evidenceLoop(eCurr) {
         let button = row.$button(evidences[key].name + " ", {"class": "btn btn-dark mr-2", "id": key, type: "button"});
         button.click(toggleEvidence);
 
-        button.$span("?", {"class": "badge badge-secondary"});
-
         eCurr.curr++;
     }
 }
