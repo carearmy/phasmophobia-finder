@@ -53,7 +53,7 @@ const ghosts = {
         "Jinn",
         [
             evidences.emf_level_5,
-            evidences.ghost_writing,
+            evidences.ghost_orb,
             evidences.spirit_box
         ],
         "Lorem ipsum"
