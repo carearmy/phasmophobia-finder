@@ -48,6 +48,16 @@ const ghosts = {
         ],
         "Lorem ipsum"
     ),
+    
+    hantu: new Ghost(
+        "Hantu",
+        [
+            evidences.fingerprints,
+            evidences.ghost_orb,
+            evidences.ghost_writing
+        ],
+        "Lorem ipsum"
+    ),
 
     jinn: new Ghost(
         "Jinn",
@@ -139,6 +149,16 @@ const ghosts = {
         "Lorem ipsum"
     ),
 
+    yokai: new Ghost(
+        "Yokai",
+        [
+            evidences.ghost_orb,
+            evidences.ghost_writing,
+            evidences.spirit_box
+        ],
+        "Lorem ipsum"
+    ),
+    
     yurei: new Ghost(
         "Yurei",
         [
